@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drawing App</title>
+    <style>
+        #drawing{
+            border: 1px solid;
+        }
+        .clr1{
+            background-color: purple;
+            width: 20px;
+            height: 20px;
+        }
+        .clr2{
+            background-color: violet;
+            width: 20px;
+            height: 20px;
+        }
+        .clr3{
+            background-color: red;
+            width: 20px;
+            height: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="drawing" width="500px" height="500px"></canvas>
+
+    <div class="clr1" data = "purple" onclick="clrValue = 'purple'"></div>
+    <div class="clr2" data = "violet" onclick="clrValue = 'violet'"></div>
+    <div class="clr3" data = "red" onclick="clrValue = 'red'"></div>
+
+
+
+    <script>
+        let canva = document.querySelector('#drawing').getContext("2d");
+
+        let clrValue;
+        let isDraw = false;
+
+      
+
+     
+
+
+        document.querySelector('#drawing').addEventListener('mousedown', (event) => {
+            isDraw = true;
+            console.log(event)
+        })
+        document.querySelector('#drawing').addEventListener('mouseup', (event) => {
+            isDraw = false;
+            canva.beginPath()
+            console.log(event)
+        })
+        document.querySelector('#drawing').addEventListener('mousemove', (event) => {
+     
+            if (isDraw) { 
+            canva.lineWidth = 3;
+            canva.lineCap = "round";
+
+            canva.lineTo(event.offsetX, event.offsetY);
+            canva.stroke();
+            canva.strokeStyle = clrValue;
+            canva.beginPath();
+            canva.moveTo(event.offsetX, event.offsetY)
+
+            console.log(event)
+             }
+           
+        })
+   
+
+
+
+    </script>
+
+
+</body>
+
+</html>
